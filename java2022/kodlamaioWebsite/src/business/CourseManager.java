@@ -1,5 +1,7 @@
 package business;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import dataAccess.CourseDao;
@@ -17,15 +19,19 @@ public class CourseManager {
 		super();
 		this.courseDao = courseDao;
 		this.loggers = loggers;
-		//this.courses = courses;
+		this.courses = new ArrayList();;
 	}
 	
 	public void addCourse(Course course) {
+		if ( ((int) course.getPrice()) <= 0 ) {
+			System.out.println(new Date() + " ERROR Kurs fiyati sifirdan kucuk olamaz.");
+			return;
+		}
 		for (Course pivot : courses) {
 			if ( pivot.getCourseName() == course.getCourseName() ) {
 				System.out.println("Kurs ismi tekrar edemez.");
 				return;
-			} 
+			}
 		}
 		
 		courses.add(course);

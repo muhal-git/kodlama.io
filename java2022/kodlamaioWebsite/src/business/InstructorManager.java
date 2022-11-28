@@ -1,5 +1,7 @@
 package business;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import dataAccess.InstructorDao;
@@ -15,13 +17,13 @@ public class InstructorManager {
 		super();
 		this.instructorDao = instructorDao;
 		this.loggers = loggers;
-		//this.instructors = instructors;
+		this.instructors = new ArrayList();
 	}
 	
 	public void addInstructor(Instructor instructor) {
 		for (Instructor pivot : instructors) {
 			if ( pivot.getName() == instructor.getName() && pivot.getSurname() == instructor.getSurname() ) {
-				System.out.println("ERROR Egitmen sistemde mevcut.");
+				System.out.println(new Date() + " ERROR Egitmen sistemde mevcut.");
 				return;
 			}
 		}
